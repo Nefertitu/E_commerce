@@ -7,7 +7,7 @@ from src.category import Category
 from src.product import Product
 
 
-def get_read_json(path: str) -> Any | str:
+def get_read_json(path: str) -> Any:
     """
     Чтение JSON - файла
     :param path:
@@ -57,13 +57,3 @@ def create_objects_from_json(data: list[dict]) -> list[Category]:
         )
         categories.append(category)
     return categories
-
-
-# raw_data = get_read_json("../data/products.json")
-# raw_data = res
-# categories_data = create_objects_from_json(raw_data)
-# print(categories_data)
-# print(categories_data[0])
-# print(categories_data[1].name)
-# print(categories_data[1].description)
-# print(categories_data[0].products)
