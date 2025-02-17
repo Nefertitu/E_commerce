@@ -14,6 +14,7 @@ path = "^17.1.0"
 python-dotenv = "^1.0.1"
 openpyxl = "^3.1.5"
 pandas-stubs = "^2.2.3.241126"
+pytest = "^8.3.4"
 
 
 [tool.poetry.group.lint.dependencies]
