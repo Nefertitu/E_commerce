@@ -15,6 +15,7 @@ python-dotenv = "^1.0.1"
 openpyxl = "^3.1.5"
 pandas-stubs = "^2.2.3.241126"
 pytest = "^8.3.4"
+pydantic = "^2.10.6"
 
 
 [tool.poetry.group.lint.dependencies]
@@ -27,6 +28,10 @@ isort = "^6.0.0"
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"
 pytest-cov = "^6.0.0"
+flake8 = "^7.1.2"
+black = "^25.1.0"
+isort = "^6.0.0"
+mypy = "^1.15.0"
 
 [build-system]
 requires = ["poetry-core"]

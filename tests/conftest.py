@@ -11,7 +11,7 @@ def product1() -> Product:
     :return:
     """
     return Product(
-        name="Samsung Galaxy S23 Ultra", description="256GB, Серый цвет, 200MP камера", price=180000, quantity=10
+        name="Samsung Galaxy S23 Ultra", description="256GB, Серый цвет, 200MP камера", price=180000.0, quantity=10
     )
 
 

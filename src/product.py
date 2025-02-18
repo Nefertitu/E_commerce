@@ -1,5 +1,4 @@
-from pydantic import BaseModel, Field
-from decimal import Decimal
+from pydantic import Field
 
 
 class Product:
@@ -7,8 +6,10 @@ class Product:
 
     name: str
     description: str
-    price: Decimal = Field(..., gt=0)  # Цена должна быть больше, чем 0
-    quantity: int = Field(..., ge=0)  # Количество должно быть больше или равно 0
+    price: float
+    quantity: int = Field(
+        ..., ge=0, description="Целое число, большее или равное нулю"
+    )  # Количество должно быть больше или равно 0
 
     def __init__(self, name, description, price, quantity):
         """

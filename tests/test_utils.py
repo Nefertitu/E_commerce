@@ -59,16 +59,17 @@ def test_create_objects_from_json(data_for_test_create_objects):
     result = create_objects_from_json(data_for_test_create_objects)
     assert len(result) == 1
     assert result[0].name == "Телевизоры"
-    assert type(result[0].name) is str
-    assert type(result[0].description) is str
+    assert isinstance(result[0].name, str)
+    assert isinstance(result[0].description, str)
     assert result[0].description == "Современный телевизор"
     assert len(result[0].products) == 1
     assert result[0].products[0].name == '55" QLED 4K'
     assert result[0].products[0].description == "Фоновая подсветка"
     assert result[0].products[0].price == 123000.0
     assert result[0].products[0].quantity == 7
-    assert type(result[0].products[0].name) is str
-    assert type(result[0].products[0].description) is str
-    assert type(result[0].products[0].price) is float
-    assert type(result[0].products[0].quantity) is int
+    assert isinstance(result[0].products[0].name, str)
+    assert isinstance(result[0].products[0].description, str)
+    assert isinstance(result[0].products[0].price, float)
+    assert isinstance(result[0].products[0].quantity, int)
+    assert result[0].products[0].quantity > 0
     assert (len(result)) == 1
