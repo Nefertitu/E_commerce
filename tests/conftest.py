@@ -11,7 +11,10 @@ def product1() -> Product:
     :return:
     """
     return Product(
-        name="Samsung Galaxy S23 Ultra", description="256GB, Серый цвет, 200MP камера", price=180000.0, quantity=10
+        name="Samsung Galaxy S23 Ultra",
+        description="256GB, Серый цвет, 200MP камера",
+        price=180000.0,
+        quantity=10
     )
 
 
@@ -21,7 +24,11 @@ def product2() -> Product:
     Возвращает экземпляр класса Product
     :return:
     """
-    return Product(name="Xiaomi Redmi Note 11", description="1024GB, Синий", price=31000, quantity=15)
+    return Product(
+        name="Xiaomi Redmi Note 11",
+        description="1024GB, Синий",
+        price=31000.0,
+        quantity=15)
 
 
 @pytest.fixture

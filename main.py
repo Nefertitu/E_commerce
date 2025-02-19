@@ -3,6 +3,7 @@ from src.product import Product
 from src.utils import create_objects_from_json, get_read_json
 
 if __name__ == "__main__":
+    print("\nHomework_14_1:\n")
     product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
@@ -49,11 +50,49 @@ if __name__ == "__main__":
     print(Category.category_count)
     print(Category.product_count)
 
+    print("\nТестирование `get_read_json()`\n")
     data_json = get_read_json("./data/products.json")
+    # print(data_json)
     result = create_objects_from_json(data_json)
+
+    print(result)
     print(result[0].name)
     print(result[0].description)
-    print(result[0].products[0].name)
-    print(result[0].products[0].description)
-    print(result[0].products[0].price)
-    print(result[0].products[0].quantity)
+    print(result[0].products)
+
+    print("\nHomework_14_2:\n")
+
+    category1 = Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        [product1, product2, product3]
+    )
+
+    print(category1.products)
+    product4 = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
+    category1.add_product(product4)
+    print(category1.products)
+    print(category1.product_count)
+
+    new_product = Product.new_product(
+        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
+         "quantity": 5})
+    print(new_product.name)
+    print(new_product.description)
+    print(new_product.price)
+    print(new_product.quantity)
+
+    new_product.price = 800
+    print(new_product.price)
+
+    new_product.price = -100
+    print(new_product.price)
+    new_product.price = 0
+    print(new_product.price)
+
+    new_product.price = 11000.0
+    print(new_product.price)
+
+
+
+
