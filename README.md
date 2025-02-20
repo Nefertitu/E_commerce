@@ -123,23 +123,23 @@ poetry run pytest --cov
 ```
 *Текущие результаты тестирования:*
 ```
----------- coverage: platform win32, python 3.13.1-final-0 -----------
+---------- coverage: platform win32, python 3.13.1-final-0 ----------
 Name                     Stmts   Miss  Cover
 --------------------------------------------
 src\__init__.py              0      0   100%
-src\category.py             28      0   100%
-src\product.py              32      6    81%
+src\category.py             29      0   100%
+src\product.py              41     10    76%
 src\utils.py                27      0   100%
 tests\__init__.py            0      0   100%
-tests\conftest.py           26      0   100%
-tests\test_category.py      21      0   100%
+tests\conftest.py           30      0   100%
+tests\test_category.py      20      0   100%
 tests\test_product.py       47      3    94%
 tests\test_utils.py         32      0   100%
 --------------------------------------------
-TOTAL                      213      9    96%
+TOTAL                      226     13    94%
 
 
-================================ 19 passed in 0.37s =================
+====================================== 19 passed in 0.57s ============
 
 
 ====================================== 20 passed in 0.36s ==========

@@ -1,6 +1,7 @@
 from src.category import Category
 from src.product import Product
 from src.utils import create_objects_from_json, get_read_json
+from tests.conftest import product_
 
 if __name__ == "__main__":
     print("\nHomework_14_1:\n")
@@ -52,7 +53,7 @@ if __name__ == "__main__":
 
     print("\nТестирование `get_read_json()`\n")
     data_json = get_read_json("./data/products.json")
-    # print(data_json)
+    print(data_json)
     result = create_objects_from_json(data_json)
 
     print(result)
@@ -74,13 +75,20 @@ if __name__ == "__main__":
     print(category1.products)
     print(category1.product_count)
 
+    products_test = [
+        Product(
+            name="Samsung Galaxy S23 Ultra", description="256GB, Серый цвет, 200MP камера", price=180000.0, quantity=10
+        )
+    ]
+
     new_product = Product.new_product(
         {
             "name": "Samsung Galaxy S23 Ultra",
             "description": "256GB, Серый цвет, 200MP камера",
             "price": 180000.0,
             "quantity": 5,
-        }
+        },
+        products_test
     )
     print(new_product.name)
     print(new_product.description)
@@ -95,5 +103,5 @@ if __name__ == "__main__":
     new_product.price = 0
     print(new_product.price)
 
-    new_product.price = 11000.0
+    new_product.price = 1100000.0
     print(new_product.price)

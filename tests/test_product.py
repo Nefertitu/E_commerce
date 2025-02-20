@@ -30,18 +30,18 @@ def test_product_init_types(product1: Product) -> None:
     assert isinstance(product1.quantity, int)
 
 
-def test_new_product_classmethod() -> None:
+def test_new_product_classmethod(product_) -> None:
     """Проверяет, что метод корректно создает новый экземпляр
     продукта класса Product"""
 
-    new_product = Product.new_product({"name": "Test", "description": "Test", "price": 1.0, "quantity": 1})
+    new_product = Product.new_product({"name": "Test", "description": "Test", "price": 1.0, "quantity": 1}, product_)
     assert new_product.name == "Test"
     assert new_product.description == "Test"
     assert new_product.price == 1.0
     assert new_product.quantity == 1
 
 
-def test_add_product_value_error(capsys) -> None:
+def test_add_product_value_error(capsys, product_) -> None:
     """
     Проверяет работу метода `add_product()` в случае,
     когда при создании экземпляра продукта класса Product
@@ -51,7 +51,7 @@ def test_add_product_value_error(capsys) -> None:
     """
 
     with pytest.raises(ValueError):
-        new_product = Product.new_product({"name": "Test", "description": "Test", "price": 0})
+        new_product = Product.new_product({"name": "Test", "description": "Test", "price": 0}, product_)
         print(new_product)
         captured = capsys.readouterr()
         assert captured.out == "Словарь должен содержать ключи 'name', 'description', 'price' и 'quantity'"

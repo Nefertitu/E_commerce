@@ -1,5 +1,4 @@
-from turtledemo.clock import current_day
-from typing import Any, Optional, List
+from typing import List, Optional
 
 from pydantic import Field
 
@@ -9,7 +8,7 @@ class Product:
 
     name: str
     description: str
-    price: float
+    # price: float
     quantity: int = Field(
         ..., ge=0, description="Целое число, большее или равное нулю"
     )  # Количество должно быть больше или равно 0
@@ -27,7 +26,6 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
-
 
     @property
     def price(self) -> float:
@@ -73,13 +71,13 @@ class Product:
         if not all(key in new_product for key in ["name", "description", "price", "quantity"]):
             raise ValueError("Словарь должен содержать ключи 'name', 'description', 'price' и 'quantity'")
 
-        new_product = cls(**new_product)
+        product = cls(**new_product)
 
-        for existing_product in existing_products:
-            if existing_product.name == new_product.name:
-                existing_product.quantity += new_product.quantity
-                existing_product.price = new_product.price
+        for existing_product in existing_products or []:
+            if existing_product.name == product.name:
+                existing_product.quantity += product.quantity
+                existing_product.price = product.price
 
                 return existing_product
 
-        return new_product
+        return product
