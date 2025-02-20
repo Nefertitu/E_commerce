@@ -42,6 +42,7 @@ E_commerce
     │   conftest.py
     │   test_category.py
     │   test_product.py
+    │   test_utils.py
 
 ```
 # Каталоги и файлы
@@ -49,14 +50,30 @@ E_commerce
 - `/data`: Содержит образец данных в формате JSON (`products.json`), 
 используемых для загрузки категорий и продуктов.
 - `/src`:
-  - `category.py`: Определяет `class Category`.
-  - `product.py`: Определяет `class Product`.
-  - `utils.py`: Вспомогательные функции для чтения и обработки 
+  1. `category.py`: Определяет `class Category`.
+  Содержит следующие методы:
+  - `__init__()`- метод для инициализации экземпляра класса Category;
+  - `add_product()` - метод для добавления товаров в категорию список товаров;
+  - `products()` - геттер (возвращает строку со списком продуктов);
+  - `products_in_list()` - геттер (возвращает список продуктов)
+  2. `product.py`: Определяет `class Product`.
+  Содержит следующие методы:
+  - `__init__()` - метод для инициализации экземпляра класса Product;
+  - `new_product()` - классметод (возвращает экземпляр класса Product 
+  на основе получаемых данных о новом продукте);
+  - `price()` - геттер (возвращает значение атрибута цена);
+  - `price()` - сеттер (метод срабатывает при присваивании новой цены);
+  3. `utils.py`: Вспомогательные функции для чтения и обработки 
 данных JSON.
+  Содержит следующие функции:
+  - `get_read_json()` - чтение JSON-файла;
+  - `create_objects_from_json()` - загрузка данных для создания объектов 
+классов Product и Category.
 - `/tests`:
-  - `conftest.py`: Файл конфигурации для фикстур pytest.
-  - `test_category.py`: Тесты для модуля `category.py`.
-  - `test_product.py`: Тесты для модуля `product.py`.
+  1. `conftest.py`: Файл конфигурации для фикстур pytest.
+  2. `test_category.py`: Тесты для модуля `category.py`.
+  3. `test_product.py`: Тесты для модуля `product.py`.
+  4. `test_utils.py`: Тесты для модуля `utils.py`.
   
 # Основные файлы
 
@@ -67,6 +84,7 @@ E_commerce
 - `poetry.lock`: Файл блокировки зависимостей для управления 
 зависимостями с помощью Poetry.
 - `pyproject.toml`: Конфигурационный файл для Poetry.
+- `.flake8`: Конфигурационный файл для линтера Flake8
 
 # Установка
 
@@ -109,19 +127,22 @@ poetry run pytest --cov
 Name                     Stmts   Miss  Cover
 --------------------------------------------
 src\__init__.py              0      0   100%
-src\category.py             13      0   100%
-src\product.py              11      0   100%
-src\utils.py                25      0   100%
+src\category.py             28      0   100%
+src\product.py              32      6    81%
+src\utils.py                27      0   100%
 tests\__init__.py            0      0   100%
-tests\conftest.py           21      0   100%
-tests\test_category.py      11      0   100%
-tests\test_product.py       10      0   100%
-tests\test_utils.py         33      0   100%
+tests\conftest.py           26      0   100%
+tests\test_category.py      21      0   100%
+tests\test_product.py       47      3    94%
+tests\test_utils.py         32      0   100%
 --------------------------------------------
-TOTAL                      124      0   100%
+TOTAL                      213      9    96%
 
 
-=============================== 8 passed in 0.33s =====================
+================================ 19 passed in 0.37s =================
+
+
+====================================== 20 passed in 0.36s ==========
 ```
 
 # Лицензия

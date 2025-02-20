@@ -4,6 +4,13 @@ from src.category import Category
 from src.product import Product
 
 
+@pytest.fixture(autouse=True)
+def reset_category_count():
+    Category.category_count = 0
+    yield
+    Category.category_count = 0
+
+
 @pytest.fixture
 def product1() -> Product:
     """
@@ -11,10 +18,7 @@ def product1() -> Product:
     :return:
     """
     return Product(
-        name="Samsung Galaxy S23 Ultra",
-        description="256GB, Серый цвет, 200MP камера",
-        price=180000.0,
-        quantity=10
+        name="Samsung Galaxy S23 Ultra", description="256GB, Серый цвет, 200MP камера", price=180000.0, quantity=10
     )
 
 
@@ -24,11 +28,7 @@ def product2() -> Product:
     Возвращает экземпляр класса Product
     :return:
     """
-    return Product(
-        name="Xiaomi Redmi Note 11",
-        description="1024GB, Синий",
-        price=31000.0,
-        quantity=15)
+    return Product(name="Xiaomi Redmi Note 11", description="1024GB, Синий", price=31000.0, quantity=15)
 
 
 @pytest.fixture
@@ -39,7 +39,7 @@ def category1(product1, product2) -> Category:
     """
     return Category(
         name="Смартфоны",
-        description="Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        description="Карманный ПК с функциями мобильного телефона.",
         products=[product1, product2],
     )
 
@@ -52,7 +52,7 @@ def category2() -> Category:
     """
     return Category(
         name="Телевизоры",
-        description="Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
+        description="Приёмник ТВ сигналов изображения и звука.",
     )
 
 
@@ -81,7 +81,7 @@ def data_for_test_json() -> str:
 
 
 @pytest.fixture
-def data_for_test_create_objects() -> list:
+def data_for_test_create_objects() -> list[dict]:
     return [
         {
             "name": "Телевизоры",

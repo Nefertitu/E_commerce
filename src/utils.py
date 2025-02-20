@@ -36,7 +36,7 @@ def create_objects_from_json(data: Any) -> list[Category]:
     :param data:
     :return:
     """
-    if isinstance(data, str):
+    if not isinstance(data, list):
         print(data)
         return []
     categories = []
@@ -59,6 +59,7 @@ def create_objects_from_json(data: Any) -> list[Category]:
     return categories
 
 
+#
 # raw_data = get_read_json("../data/products.json")
 # # raw_data = res
 # categories_data = create_objects_from_json(raw_data)
@@ -68,4 +69,3 @@ def create_objects_from_json(data: Any) -> list[Category]:
 # print(categories_data[1].description)
 # print(categories_data[0].products)
 # print(len(categories_data[0].products_in_list))
-

@@ -34,7 +34,6 @@ def test_new_product_classmethod() -> None:
     """Проверяет, что метод корректно создает новый экземпляр
     продукта класса Product"""
 
-
     new_product = Product.new_product({"name": "Test", "description": "Test", "price": 1.0, "quantity": 1})
     assert new_product.name == "Test"
     assert new_product.description == "Test"
@@ -56,7 +55,6 @@ def test_add_product_value_error(capsys) -> None:
         print(new_product)
         captured = capsys.readouterr()
         assert captured.out == "Словарь должен содержать ключи 'name', 'description', 'price' и 'quantity'"
-
 
 
 def test_price_setter(product1) -> None:
@@ -81,9 +79,7 @@ def test_price_setter(product1) -> None:
     ],
 )
 @patch("builtins.input", side_effect="input_response")
-def test_price_setter_lower_price(
-        product1, new_price, input_response,
-        expected_price, capsys) -> None:
+def test_price_setter_lower_price(product1, new_price, input_response, expected_price, capsys) -> None:
     """
     Проверяет, что цена меняется на более низкую,
     в случае положительного ответа пользователя и остается прежней
@@ -107,12 +103,10 @@ def test_price_setter_lower_price(
     "new_price, expected_price",
     [
         (0.0, 180000.0),
-        (- 120000.0, 180000.0),
+        (-120000.0, 180000.0),
     ],
 )
-def test_price_setter_negative(
-        product1, new_price,
-        expected_price, capsys) -> None:
+def test_price_setter_negative(product1, new_price, expected_price, capsys) -> None:
     """
     Проверяет, что цена не может быть отрицательной или
     быть равной нулю
@@ -125,4 +119,3 @@ def test_price_setter_negative(
     print(product1.price)
     assert captured.out == "Цена не должна быть нулевая или отрицательная\n"
     assert product1.price == expected_price
-
