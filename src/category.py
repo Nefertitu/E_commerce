@@ -13,7 +13,7 @@ class Category:
     category_count = 0
     product_count = 0
 
-    def __init__(self, name: str, description: str, products: Optional[List[Product]] = None) -> None:
+    def __init__(self, name: str, description: str, products: Optional[List[Product] | None] = None) -> None:
         """
         Метод для инициализации экземпляра класса.
         Задаем значения атрибутам экземпляра.
@@ -29,7 +29,7 @@ class Category:
         Category.category_count += 1
         Category.product_count = len(self.__products)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Метод возвращает строковое отображение для класса Category"""
         amount_products = 0
         for product in self.__products:
@@ -46,7 +46,7 @@ class Category:
             Category.product_count += 1
 
     @property
-    def products(self) -> str:   # type: ignore
+    def products(self) -> str:  # type: ignore
         """
         Возвращает строку со списком продуктов
         :return:
@@ -89,4 +89,3 @@ class Category:
 # category.add_product(product3)
 #
 # print(category.products)
-

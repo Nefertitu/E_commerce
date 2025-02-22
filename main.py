@@ -1,7 +1,7 @@
 from src.category import Category
 from src.product import Product
+from src.products_iterator import ProductsIterator
 from src.utils import create_objects_from_json, get_read_json
-from tests.conftest import product_
 
 if __name__ == "__main__":
     print("\nHomework_14_1:\n")
@@ -88,7 +88,7 @@ if __name__ == "__main__":
             "price": 180000.0,
             "quantity": 5,
         },
-        products_test
+        products_test,
     )
     print(new_product.name)
     print(new_product.description)
@@ -119,7 +119,7 @@ if __name__ == "__main__":
     category1 = Category(
         "Смартфоны",
         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
-        [product1, product2, product3]
+        [product1, product2, product3],
     )
 
     print(str(category1))
@@ -130,4 +130,16 @@ if __name__ == "__main__":
     print(product1 + product3)
     print(product2 + product3)
 
+    print("\n===ProductsIterator===\n")
+    products_list = ProductsIterator(category1.products_in_list)   # type: ignore
+    print(next(products_list).name)
+    print(next(products_list).name)
+    print(next(products_list).name)
+    print()
 
+    for product in products_list:
+        print(product)
+        print(product.name)
+        print(product.description)
+        print(product.price)
+        print(product.quantity)

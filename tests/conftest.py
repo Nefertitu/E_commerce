@@ -1,4 +1,4 @@
-from typing import List, Optional, Generator, Type
+from typing import Generator, List, Optional
 
 import pytest
 
