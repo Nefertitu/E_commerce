@@ -1,14 +1,19 @@
+from typing import List, Optional
+
+from src.product import Product
+
+
 class Category:
     """Класс для представления категорий продуктов"""
 
     name: str
     description: str
-    products: list
+    # products: Optional[List[Product]] = None
 
     category_count = 0
     product_count = 0
 
-    def __init__(self, name, description, products=None):
+    def __init__(self, name: str, description: str, products: Optional[List[Product]] = None) -> None:
         """
         Метод для инициализации экземпляра класса.
         Задаем значения атрибутам экземпляра.
@@ -16,10 +21,64 @@ class Category:
         :param description:
         :param products:
         """
+
         self.name = name
         self.description = description
-        self.products = products or None
-        self.category_count = 1
+        self.__products = products if products is not None else []
 
         Category.category_count += 1
-        Category.product_count += len(products) if products else 0
+        Category.product_count = len(self.__products)
+
+    def add_product(self, product: Product) -> None:
+        """
+        Метод для добавления товаров в категорию список товаров
+        """
+        if self.__products is not None:
+            self.__products.append(product)
+            Category.product_count += 1
+
+    @property
+    def products(self) -> str:   # type: ignore
+        """
+        Возвращает строку со списком продуктов
+        :return:
+        """
+        products_str = ""
+        if self.__products:
+            for product in self.__products:
+                products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+
+            return products_str
+        return ""
+
+    @property
+    def products_in_list(self) -> list | None:
+        """
+        Возвращает список продуктов
+        :return:
+        """
+        return self.__products
+
+
+# category = Category("Electronics", "Приборы",[Product("Смартфон", "Средство связи", 10.0, 15)])
+# print(category.name)
+# print(category.products)
+# # print(type(category.products_in_list))
+# product_data1 = {'name': 'Laptop', 'description': 'Модель...', 'price': 1000.0, 'quantity': 3}
+# product1 = Product.new_product(product_data1, category.products_in_list)
+#
+# category.add_product(product1)
+# print(category.products)
+#
+# product_data2 = {'name': 'Laptop', 'description': 'Модель...', 'price': 900.0, 'quantity': 2}
+# product2 = Product.new_product(product_data2, category.products_in_list)
+# print(product2.price)
+# category.add_product(product2) # Эта строка не нужна, так как продукт уже добавлен в список
+# print(category.products)
+#
+# product_data3 = {'name': 'Mouse', 'description': 'Модель...', 'price': 20.0, 'quantity': 2}
+# product3 = Product.new_product(product_data3, category.products_in_list)
+# category.add_product(product3)
+#
+# print(category.products)
+
