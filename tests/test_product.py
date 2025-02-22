@@ -119,3 +119,28 @@ def test_price_setter_negative(product1, new_price, expected_price, capsys) -> N
     print(product1.price)
     assert captured.out == "Цена не должна быть нулевая или отрицательная\n"
     assert product1.price == expected_price
+
+
+def test_product_str(product1: Product) -> None:
+    """
+    Проверяет, что возвращается строковое отображение продукта
+    :param product1:
+    :return:
+    """
+
+    assert str(product1) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 10 шт.\n"
+
+
+def test_product_add(product1: Product, product2: Product) -> None:
+    """Проверяет, что метод __add__() класса Product корректно
+    считает общую стоимость товаров двух наименований продуктов"""
+
+    assert product1.price == 180000.0
+    assert product2.price == 31000.0
+    assert product1.quantity == 10
+    assert product2.quantity == 15
+    cost_product1 = product1.price * product1.quantity
+    cost_product2 = product2.price * product2.quantity
+    total_cost = cost_product1 + cost_product2
+    assert product1 + product2 == 2265000.0
+    assert product1 + product2 == total_cost

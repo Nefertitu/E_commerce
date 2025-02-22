@@ -32,7 +32,8 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт.\n"
 
     def __add__(self, other):
-        """Метод возвращает сумму произведений цены на количество у двух объектов"""
+        """Метод возвращает сумму произведений цены на количество у двух объектов
+        (общую стоимость товаров двух наименований)"""
         return self.__price * self.quantity + other.price * other.quantity
 
 
