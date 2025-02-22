@@ -35,6 +35,7 @@ E_commerce
 │   │   __init__.py
 │   │   category.py
 │   │   product.py
+│   │   products_iterator.py
 │   │   utils.py
 │
 └───tests
@@ -42,6 +43,7 @@ E_commerce
     │   conftest.py
     │   test_category.py
     │   test_product.py
+    │   test_products_iterator.py
     │   test_utils.py
 
 ```
@@ -53,12 +55,16 @@ E_commerce
   1. `category.py`: Определяет `class Category`.
   Содержит следующие методы:
   - `__init__()`- метод для инициализации экземпляра класса Category;
+  - `__str__()` - метод возвращает строковое отображение для класса Category;
   - `add_product()` - метод для добавления товаров в категорию список товаров;
   - `products()` - геттер (возвращает строку со списком продуктов);
   - `products_in_list()` - геттер (возвращает список продуктов)
   2. `product.py`: Определяет `class Product`.
   Содержит следующие методы:
   - `__init__()` - метод для инициализации экземпляра класса Product;
+  - `__str__()` - возвращает строковое представление продукта;
+  - `__add__()` - метод возвращает сумму произведений цены на количество 
+  у двух объектов (общую стоимость товаров двух наименований);
   - `new_product()` - классметод (возвращает экземпляр класса Product 
   на основе получаемых данных о новом продукте);
   - `price()` - геттер (возвращает значение атрибута цена);
@@ -69,11 +75,18 @@ E_commerce
   - `get_read_json()` - чтение JSON-файла;
   - `create_objects_from_json()` - загрузка данных для создания объектов 
 классов Product и Category.
+  4. `products_iterator.py`: Определяет `class ProductsIterator`.
+  Содержит следующие методы:
+  - `__init__()` - конструктор принимающий список элементов
+  и инициализирующий объект класса ProductsIterator;
+  - `__iter__()` - метод, который возвращает итератор;
+  - `__next__()` - метод, который возвращает следующий элемент последовательности.
 - `/tests`:
   1. `conftest.py`: Файл конфигурации для фикстур pytest.
   2. `test_category.py`: Тесты для модуля `category.py`.
   3. `test_product.py`: Тесты для модуля `product.py`.
   4. `test_utils.py`: Тесты для модуля `utils.py`.
+  5. `tests_products_iterator.py`: Тесты ля модуля `products_iterator.py`
   
 # Основные файлы
 

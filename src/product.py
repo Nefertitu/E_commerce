@@ -28,7 +28,7 @@ class Product:
         self.quantity = quantity
 
     def __str__(self) -> str:
-        """возвращает строковое представленеи"""
+        """возвращает строковое представление продукта"""
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт.\n"
 
     def __add__(self, other: Any) -> Any:
