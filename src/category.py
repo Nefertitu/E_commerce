@@ -1,6 +1,8 @@
 from typing import List, Optional
 
+from src.lawngrass import LawnGrass
 from src.product import Product
+from src.smartphone import Smartphone
 
 
 class Category:
@@ -41,9 +43,16 @@ class Category:
         """
         Метод для добавления товаров в категорию список товаров
         """
-        if self.__products is not None:
-            self.__products.append(product)
-            Category.product_count += 1
+        if issubclass(Smartphone, Product) or issubclass(LawnGrass, Product):
+            if self.__products is not None:
+                self.__products.append(product)
+                if isinstance(self, Smartphone):
+                    Category.product_count += 1
+                elif isinstance(self, LawnGrass):
+                    Category.product_count += 1
+
+
+
 
     @property
     def products(self) -> str:  # type: ignore

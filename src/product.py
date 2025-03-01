@@ -66,8 +66,8 @@ class Product:
                 if answer.lower() != "y":
                     print("Цена остается прежней")
                     new_price = current_price
-
             self.__price = new_price
+
 
     @classmethod
     def new_product(cls, new_product: dict, existing_products: Optional[List["Product"]]) -> "Product":
