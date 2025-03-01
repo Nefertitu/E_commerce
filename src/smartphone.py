@@ -1,9 +1,21 @@
+from typing import Any
+
 from src.product import Product
 
 
 class Smartphone(Product):
 
-    def __init__(self, name: str, description: str, price: float, quantity: int, efficiency: float, model: str, memory: int, color: str) -> None:
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        efficiency: float,
+        model: str,
+        memory: int,
+        color: str,
+    ) -> None:
         """Конструктор, возвращающий категорию товаров 'Смартфоны'"""
         super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
@@ -11,10 +23,9 @@ class Smartphone(Product):
         self.model = model
         self.color = color
 
-    def __add__(self, other):
+    def __add__(self, other: Any) -> Any:
         """Метод, возвращает сумму произведений цены на количество у двух
         объектов, принадлежащих к классу 'Трава газонная' ('LawnGrass')"""
-        if type(self) == Smartphone:
+        if type(self) is Smartphone:
             return self.price * self.quantity + other.price * other.quantity
         raise TypeError
-

@@ -51,9 +51,6 @@ class Category:
                 elif isinstance(self, LawnGrass):
                     Category.product_count += 1
 
-
-
-
     @property
     def products(self) -> str:  # type: ignore
         """

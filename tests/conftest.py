@@ -124,6 +124,7 @@ def data_for_test_create_objects() -> list[dict]:
         }
     ]
 
+
 @pytest.fixture
 def smartphone1() -> Smartphone:
     """Возвращает экземпляр класса Smartphone"""
@@ -135,8 +136,9 @@ def smartphone1() -> Smartphone:
         efficiency=95.5,
         model="S23 Ultra",
         memory=256,
-        color="Серый"
+        color="Серый",
     )
+
 
 @pytest.fixture
 def smartphone2() -> Smartphone:
@@ -149,7 +151,7 @@ def smartphone2() -> Smartphone:
         efficiency=98.2,
         model="15",
         memory=512,
-        color="Gray space"
+        color="Gray space",
     )
 
 
@@ -163,7 +165,8 @@ def lawngrass1() -> LawnGrass:
         quantity=20,
         country="Россия",
         germination_period="7 дней",
-        color="Зеленый")
+        color="Зеленый",
+    )
 
 
 @pytest.fixture
@@ -174,6 +177,7 @@ def lawngrass2() -> LawnGrass:
         description="Выносливая трава",
         price=450.0,
         quantity=15,
-        country="США", germination_period="5 дней",
-        color="Темно-зеленый"
+        country="США",
+        germination_period="5 дней",
+        color="Темно-зеленый",
     )

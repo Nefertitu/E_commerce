@@ -20,7 +20,7 @@ def test_smartphone(lawngrass1) -> None:
     assert lawngrass1.country == "Россия"
     assert lawngrass1.germination_period == "7 дней"
     assert lawngrass1.color == "Зеленый"
-    assert issubclass(type(lawngrass1), Product) == True
+    assert issubclass(type(lawngrass1), Product) is True
 
 
 def test_smartphone_add(lawngrass1, lawngrass2) -> None:
@@ -32,8 +32,8 @@ def test_smartphone_add(lawngrass1, lawngrass2) -> None:
     :return:
     """
 
-    assert isinstance(lawngrass1, Product) == True
-    assert isinstance(lawngrass2, Product) == True
+    assert isinstance(lawngrass1, Product) is True
+    assert isinstance(lawngrass2, Product) is True
     assert lawngrass1.price == 500.0
     assert lawngrass2.price == 450.0
     assert lawngrass1.quantity == 20

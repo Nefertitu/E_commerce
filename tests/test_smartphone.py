@@ -21,7 +21,7 @@ def test_smartphone(smartphone1) -> None:
     assert smartphone1.model == "S23 Ultra"
     assert smartphone1.memory == 256
     assert smartphone1.color == "Серый"
-    assert issubclass(type(smartphone1), Product) == True
+    assert issubclass(type(smartphone1), Product) is True
 
 
 def test_smartphone_add(smartphone1, smartphone2) -> None:
@@ -33,8 +33,8 @@ def test_smartphone_add(smartphone1, smartphone2) -> None:
     :return:
     """
 
-    assert isinstance(smartphone1, Product) == True
-    assert isinstance(smartphone2, Product) == True
+    assert isinstance(smartphone1, Product) is True
+    assert isinstance(smartphone2, Product) is True
     assert smartphone1.price == 180000.0
     assert smartphone2.price == 210000.0
     assert smartphone1.quantity == 5
