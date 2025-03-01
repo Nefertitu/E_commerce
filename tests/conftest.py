@@ -1,9 +1,10 @@
-from typing import List, Optional, Generator
+from typing import Generator, List, Optional
 
 import pytest
 
 from src.category import Category
 from src.product import Product
+from src.products_iterator import ProductsIterator
 
 
 @pytest.fixture(autouse=True)
@@ -61,6 +62,12 @@ def category1(product1: Product, product2: Product) -> Category:
         description="Карманный ПК с функциями мобильного телефона.",
         products=[product1, product2],
     )
+
+
+@pytest.fixture
+def products_iterator(category1) -> ProductsIterator:
+    products_list = category1.products_in_list
+    return ProductsIterator(list(products_list))
 
 
 @pytest.fixture

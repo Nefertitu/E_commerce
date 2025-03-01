@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Any
 
 from pydantic import Field
 
@@ -26,6 +26,15 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+
+    def __str__(self) -> str:
+        """возвращает строковое представление продукта"""
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт.\n"
+
+    def __add__(self, other: Any) -> Any:
+        """Метод возвращает сумму произведений цены на количество у двух объектов
+        (общую стоимость товаров двух наименований)"""
+        return self.__price * self.quantity + other.price * other.quantity
 
     @property
     def price(self) -> float:
