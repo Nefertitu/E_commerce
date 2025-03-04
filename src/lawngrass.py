@@ -16,10 +16,10 @@ class LawnGrass(Product):
         color: str,
     ) -> None:
         """Конструктор, возвращающий категорию товаров 'Трава газонная'"""
-        super().__init__(name, description, price, quantity)
         self.country = country
         self.germination_period = germination_period
         self.color = color
+        super().__init__(name, description, price, quantity)
 
     def __add__(self, other: Any) -> Any:
         """Метод, возвращает сумму произведений цены на количество у двух

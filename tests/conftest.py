@@ -4,6 +4,7 @@ import pytest
 
 from src.category import Category
 from src.lawngrass import LawnGrass
+from src.order import Order
 from src.product import Product
 from src.products_iterator import ProductsIterator
 from src.smartphone import Smartphone
@@ -180,4 +181,12 @@ def lawngrass2() -> LawnGrass:
         country="США",
         germination_period="5 дней",
         color="Темно-зеленый",
+    )
+
+
+@pytest.fixture
+def order1() -> Order:
+    """Возвращает экземпляр класса Order"""
+    return Order(
+        name="Samsung Galaxy S23 Ultra", description="256GB, Серый цвет, 200MP камера", price=180000.0, quantity=2
     )

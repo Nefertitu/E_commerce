@@ -17,11 +17,11 @@ class Smartphone(Product):
         color: str,
     ) -> None:
         """Конструктор, возвращающий категорию товаров 'Смартфоны'"""
-        super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
         self.memory = memory
         self.model = model
         self.color = color
+        super().__init__(name, description, price, quantity)
 
     def __add__(self, other: Any) -> Any:
         """Метод, возвращает сумму произведений цены на количество у двух
