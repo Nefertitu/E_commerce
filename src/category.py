@@ -74,6 +74,17 @@ class Category(BaseProducts):
         """
         return self.__products
 
+    def middle_price(self):
+        """Возвращает средний ценник всех товаров"""
+        total_amount = []
+        try:
+            for product in self.__products:
+                total_amount.append(product.price)
+            return round(sum(total_amount) / len(self.__products), 2)
+        except ZeroDivisionError:
+            return 0
+
+
 
 # category = Category("Electronics", "Приборы",[Product("Смартфон", "Средство связи", 10.0, 15)])
 # print(category.name)

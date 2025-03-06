@@ -9,12 +9,12 @@ from src.print_mixin import PrintMixin
 class Product(BaseProduct, PrintMixin):
     """Класс для представления продукта"""
 
-    name: str
-    description: str
-    # price: float
-    quantity: int = Field(
-        ..., ge=0, description="Целое число, большее или равное нулю"
-    )  # Количество должно быть больше или равно 0
+    # name: str
+    # description: str
+    # # price: float
+    # quantity: int # Field(
+    #     ..., ge=0, description="Целое число, большее или равное нулю"
+    # )  # Количество должно быть больше или равно 0
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         """
@@ -28,7 +28,11 @@ class Product(BaseProduct, PrintMixin):
         self.name = name
         self.description = description
         self.__price = price
-        self.quantity = quantity
+        if quantity > 0:
+            self.quantity = quantity
+        else:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен.")
+
         super().__init__()
 
     def __str__(self) -> str:
