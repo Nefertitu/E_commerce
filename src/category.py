@@ -1,9 +1,12 @@
 from typing import List, Optional
 
+from src.base_products import BaseProducts
+from src.lawngrass import LawnGrass
 from src.product import Product
+from src.smartphone import Smartphone
 
 
-class Category:
+class Category(BaseProducts):
     """Класс для представления категорий продуктов"""
 
     name: str
@@ -21,7 +24,7 @@ class Category:
         :param description:
         :param products:
         """
-
+        super().__init__()
         self.name = name
         self.description = description
         self.__products = products if products is not None else []
@@ -41,9 +44,13 @@ class Category:
         """
         Метод для добавления товаров в категорию список товаров
         """
-        if self.__products is not None:
-            self.__products.append(product)
-            Category.product_count += 1
+        if issubclass(Smartphone, Product) or issubclass(LawnGrass, Product):
+            if self.__products:
+                self.__products.append(product)
+                if isinstance(self, Smartphone):
+                    Category.product_count += 1
+                elif isinstance(self, LawnGrass):
+                    Category.product_count += 1
 
     @property
     def products(self) -> str:  # type: ignore

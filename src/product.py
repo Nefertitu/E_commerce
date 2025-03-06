@@ -1,9 +1,12 @@
-from typing import List, Optional, Any
+from typing import Any, List, Optional
 
 from pydantic import Field
 
+from src.base_product import BaseProduct
+from src.print_mixin import PrintMixin
 
-class Product:
+
+class Product(BaseProduct, PrintMixin):
     """Класс для представления продукта"""
 
     name: str
@@ -26,6 +29,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     def __str__(self) -> str:
         """возвращает строковое представление продукта"""
@@ -66,7 +70,6 @@ class Product:
                 if answer.lower() != "y":
                     print("Цена остается прежней")
                     new_price = current_price
-
             self.__price = new_price
 
     @classmethod

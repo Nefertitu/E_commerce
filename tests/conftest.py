@@ -3,8 +3,11 @@ from typing import Generator, List, Optional
 import pytest
 
 from src.category import Category
+from src.lawngrass import LawnGrass
+from src.order import Order
 from src.product import Product
 from src.products_iterator import ProductsIterator
+from src.smartphone import Smartphone
 
 
 @pytest.fixture(autouse=True)
@@ -108,6 +111,10 @@ def data_for_test_json() -> str:
 
 @pytest.fixture
 def data_for_test_create_objects() -> list[dict]:
+    """
+    Возвращает список продуктов
+    :return:
+    """
     return [
         {
             "name": "Телевизоры",
@@ -117,3 +124,69 @@ def data_for_test_create_objects() -> list[dict]:
             ],
         }
     ]
+
+
+@pytest.fixture
+def smartphone1() -> Smartphone:
+    """Возвращает экземпляр класса Smartphone"""
+    return Smartphone(
+        name="Samsung Galaxy S23 Ultra",
+        description="256GB, Серый цвет, 200MP камера",
+        price=180000.0,
+        quantity=5,
+        efficiency=95.5,
+        model="S23 Ultra",
+        memory=256,
+        color="Серый",
+    )
+
+
+@pytest.fixture
+def smartphone2() -> Smartphone:
+    """Возвращает экземпляр класса Smartphone"""
+    return Smartphone(
+        name="Iphone 15",
+        description="512GB, Gray space",
+        price=210000.0,
+        quantity=8,
+        efficiency=98.2,
+        model="15",
+        memory=512,
+        color="Gray space",
+    )
+
+
+@pytest.fixture
+def lawngrass1() -> LawnGrass:
+    """Возвращает экземпляр класса LawnGrass"""
+    return LawnGrass(
+        name="Газонная трава",
+        description="Элитная трава для газона",
+        price=500.0,
+        quantity=20,
+        country="Россия",
+        germination_period="7 дней",
+        color="Зеленый",
+    )
+
+
+@pytest.fixture
+def lawngrass2() -> LawnGrass:
+    """Возвращает экземпляр класса LawnGrass"""
+    return LawnGrass(
+        name="Газонная трава 2",
+        description="Выносливая трава",
+        price=450.0,
+        quantity=15,
+        country="США",
+        germination_period="5 дней",
+        color="Темно-зеленый",
+    )
+
+
+@pytest.fixture
+def order1() -> Order:
+    """Возвращает экземпляр класса Order"""
+    return Order(
+        name="Samsung Galaxy S23 Ultra", description="256GB, Серый цвет, 200MP камера", price=180000.0, quantity=2
+    )
