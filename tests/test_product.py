@@ -1,7 +1,5 @@
 from unittest.mock import patch
-
 import pytest
-
 from src.product import Product
 
 
@@ -128,7 +126,7 @@ def test_product_str(product1: Product) -> None:
     :return:
     """
 
-    assert str(product1) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 10 шт.\n"
+    assert str(product1) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 10 шт. "
 
 
 def test_product_add(product1: Product, product2: Product) -> None:
@@ -144,3 +142,19 @@ def test_product_add(product1: Product, product2: Product) -> None:
     total_cost = cost_product1 + cost_product2
     assert product1 + product2 == 2265000.0
     assert product1 + product2 == total_cost
+
+
+def test_product_quantity_zero():
+    """Проверяет, что при получении нулевого значения количества для
+    экземпляра класса Продукты, в консоль будет выведено сообщение об ошибке
+    и что генерируется ValueError.
+    """
+    with pytest.raises(ValueError) as excinfo:
+        Product(
+            name="Xiaomi Redmi Note 11",
+            description="1024GB, Синий",
+            price=31000.0,
+            quantity=0
+        )
+
+    assert str(excinfo.value) == "Товар с нулевым количеством не может быть добавлен.\n"

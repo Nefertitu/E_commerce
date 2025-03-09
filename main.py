@@ -1,4 +1,5 @@
 from src.category import Category
+from src.exceptions import ZeroQuantityProduct
 from src.lawngrass import LawnGrass
 from src.order import Order
 from src.product import Product
@@ -288,6 +289,7 @@ if __name__ == "__main__":
     print("\n===Homework_17_1===\n")
     try:
         product_invalid = Product("Бракованный товар", "Неверное количество", 1000.0, 0)
+    # if ValueError:
     except ValueError as e:
         print(
             "Возникла ошибка ValueError прерывающая работу программы при попытке добавить продукт с нулевым количеством")
@@ -304,4 +306,69 @@ if __name__ == "__main__":
 
     category_empty = Category("Пустая категория", "Категория без продуктов", [])
     print(category_empty.middle_price())
+
+    try:
+        product_1 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+        product_2 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 0)
+    except ValueError as e:
+        print(f"{e}")
+    category1_1 = Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        []
+    )
+    try:
+        test_list_products = [Product("Iphone 15", "512GB, Gray space", 210000.0, 8), Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 0), "Not a product"]
+        for product in test_list_products:
+            category1_1.add_product(product)
+    except Exception as e:
+        print(f"\nОшибка: {e}")
+
+    category1_1 = Category(
+            "Смартфоны",
+            "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+            [Product("Iphone 15", "512GB, Gray space", 210000.0, 8)]
+        )
+    print(category1_1)
+    product_2 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 2)
+    print(f"Попытка добавления товара: {product_2}")
+    category1_1.add_product(product_2)
+    print(str(category1_1))
+    print(f"Товары в категории '{category1_1.name}':\n"
+          f"{category1_1.products}\n")
+
+    order_1 = Order("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 5)
+    print(order_1)
+    try:
+        order_2 = Order("Test order", "Test description", 1, 0)
+    except ZeroQuantityProduct as e:
+        print(f"Ошибка: {e}")
+    # print(order_2)
+    order_3 = Order("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    try:
+        list_oders = [order_1, Order("Test order", "Test description", 1, 0)]
+        for order in list_oders:
+            print(f"Попытка добавления товара: {order}")
+            order_3.add_order(order)
+    except Exception as e:
+        print(f"\nОшибка: {e}")
+
+    print(f"Попытка добавления товара: {order_1.name}")
+    order_sample = order_1
+    print("Список заказов:")
+    print(order_sample.orders_str())
+
+    order_sample.add_order(order_3)
+    print(f"\nПопытка добавления товара: {order_3.name}")
+    print("Список заказов:")
+    print(order_sample.orders_str())
+    order_4 = Order("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    print(f"\nПопытка добавления товара: {order_4.name}")
+    order_sample.add_order(order_4)
+    print("Список заказов:")
+    print(order_sample.orders_str())
+    print(f"Количество наименований товаров в списке заказов: {order_sample.order_count}.")
+
+
+
 
