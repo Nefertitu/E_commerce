@@ -1,11 +1,8 @@
 from typing import List, Optional
 
-from src.base_product import BaseProduct
 from src.base_products import BaseProducts
-from src.lawngrass import LawnGrass
-from src.product import Product
-from src.smartphone import Smartphone
 from src.exceptions import ZeroQuantityProduct
+from src.product import Product
 
 
 class Category(BaseProducts):
@@ -13,7 +10,6 @@ class Category(BaseProducts):
 
     name: str
     description: str
-    # products: Optional[List[Product]] = None
 
     category_count = 0
     product_count = 0
@@ -38,7 +34,7 @@ class Category(BaseProducts):
         """Метод возвращает строковое отображение для класса Category"""
         amount_products = 0
         for product in self.__products:
-                amount_products += product.quantity
+            amount_products += product.quantity
         return f"{self.name}, количество продуктов: {amount_products} шт."
 
     def add_product(self, product: Product) -> None:
@@ -54,7 +50,7 @@ class Category(BaseProducts):
         except ZeroQuantityProduct as e:
             print(f"Ошибка при добавлении товара: {e}")
         except TypeError:
-            print(f"Объект не является экземпляром класса `Product`.")
+            print("Объект не является экземпляром класса `Product`.")
         else:
             self.__products.append(product)
             Category.product_count += 1
@@ -62,20 +58,19 @@ class Category(BaseProducts):
         finally:
             print("Обработка добавления товара завершена.\n")
 
-
     @property
     def products(self) -> str:  # type: ignore
-            """
-            Возвращает строку со списком продуктов
-            :return:
-            """
-            products_str = ""
-            if self.__products:
-                for product in self.__products:
-                    products_str += str(product)
+        """
+        Возвращает строку со списком продуктов
+        :return:
+        """
+        products_str = ""
+        if self.__products:
+            for product in self.__products:
+                products_str += str(product)
 
-                return products_str
-            return ""
+            return products_str
+        return ""
 
     @property
     def products_in_list(self) -> list | None:
@@ -85,7 +80,7 @@ class Category(BaseProducts):
         """
         return self.__products
 
-    def middle_price(self):
+    def middle_price(self) -> float:
         """Возвращает средний ценник всех товаров"""
         total_amount = []
         try:
@@ -94,7 +89,6 @@ class Category(BaseProducts):
             return round(sum(total_amount) / len(self.__products), 2)
         except ZeroDivisionError:
             return 0
-
 
 
 # category = Category("Electronics", "Приборы",[Product("Смартфон", "Средство связи", 10.0, 15)])

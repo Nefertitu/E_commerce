@@ -1,7 +1,5 @@
 from typing import Any, List, Optional
 
-from pydantic import Field
-
 from src.base_product import BaseProduct
 from src.exceptions import ZeroQuantityProduct
 from src.print_mixin import PrintMixin

@@ -41,10 +41,7 @@ def product1() -> Product:
     :return:
     """
     return Product(
-        name="Samsung Galaxy S23 Ultra",
-        description="256GB, Серый цвет, 200MP камера",
-        price=180000.0,
-        quantity=10
+        name="Samsung Galaxy S23 Ultra", description="256GB, Серый цвет, 200MP камера", price=180000.0, quantity=10
     )
 
 
@@ -54,11 +51,7 @@ def product2() -> Product:
     Возвращает экземпляр класса Product
     :return:
     """
-    return Product(
-        name="Xiaomi Redmi Note 11",
-        description="1024GB, Синий",
-        price=31000.0,
-        quantity=15)
+    return Product(name="Xiaomi Redmi Note 11", description="1024GB, Синий", price=31000.0, quantity=15)
 
 
 @pytest.fixture
@@ -195,19 +188,11 @@ def lawngrass2() -> LawnGrass:
 def order1() -> Order:
     """Возвращает экземпляр класса Order"""
     return Order(
-        name="Samsung Galaxy S23 Ultra",
-        description="256GB, Серый цвет, 200MP камера",
-        price=180000.0,
-        quantity=2
+        name="Samsung Galaxy S23 Ultra", description="256GB, Серый цвет, 200MP камера", price=180000.0, quantity=2
     )
+
 
 @pytest.fixture
 def order2() -> Order:
     """Возвращает экземпляр класса Order"""
-    return Order(
-        name="Iphone 15",
-        description="512GB, Gray space",
-        price=210000.0,
-        quantity=5
-    )
-
+    return Order(name="Iphone 15", description="512GB, Gray space", price=210000.0, quantity=5)

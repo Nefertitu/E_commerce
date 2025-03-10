@@ -16,4 +16,3 @@ def test_custom_exeption(category2, capsys):
         assert False, "Исключение ZeroQuantityProduct не было вызвано"
     message = capsys.readouterr()
     assert message.out.strip() == "Ошибка: Товар с нулевым количеством не может быть добавлен."
-

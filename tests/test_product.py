@@ -1,5 +1,7 @@
 from unittest.mock import patch
+
 import pytest
+
 from src.product import Product
 
 
@@ -150,11 +152,6 @@ def test_product_quantity_zero():
     и что генерируется ValueError.
     """
     with pytest.raises(ValueError) as excinfo:
-        Product(
-            name="Xiaomi Redmi Note 11",
-            description="1024GB, Синий",
-            price=31000.0,
-            quantity=0
-        )
+        Product(name="Xiaomi Redmi Note 11", description="1024GB, Синий", price=31000.0, quantity=0)
 
     assert str(excinfo.value) == "Товар с нулевым количеством не может быть добавлен.\n"

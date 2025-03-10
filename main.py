@@ -258,7 +258,7 @@ if __name__ == "__main__":
 
     print(category1.name == "Смартфоны")
     print(category1.description)
-    print(len(category1.products_in_list))   # type: ignore
+    print(len(category1.products_in_list))  # type: ignore
     print(category1.category_count)
     print(category1.product_count)
 
@@ -271,7 +271,7 @@ if __name__ == "__main__":
 
     print(category2.name)
     print(category2.description)
-    print(len(category2.products_in_list))   # type: ignore
+    print(len(category2.products_in_list))  # type: ignore
     print(category2.products)
 
     print(Category.category_count)
@@ -292,7 +292,8 @@ if __name__ == "__main__":
     # if ValueError:
     except ValueError as e:
         print(
-            "Возникла ошибка ValueError прерывающая работу программы при попытке добавить продукт с нулевым количеством")
+            f"Возникла ошибка ValueError прерывающая работу программы при попытке добавить продукт с нулевым количеством: '{e}'"
+           )
     else:
         print("Не возникла ошибка ValueError при попытке добавить продукт с нулевым количеством")
 
@@ -315,27 +316,30 @@ if __name__ == "__main__":
     category1_1 = Category(
         "Смартфоны",
         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
-        []
+        [],
     )
     try:
-        test_list_products = [Product("Iphone 15", "512GB, Gray space", 210000.0, 8), Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 0), "Not a product"]
+        test_list_products = [
+            Product("Iphone 15", "512GB, Gray space", 210000.0, 8),
+            Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 0),
+            "Not a product",
+        ]
         for product in test_list_products:
             category1_1.add_product(product)
     except Exception as e:
         print(f"\nОшибка: {e}")
 
     category1_1 = Category(
-            "Смартфоны",
-            "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
-            [Product("Iphone 15", "512GB, Gray space", 210000.0, 8)]
-        )
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        [Product("Iphone 15", "512GB, Gray space", 210000.0, 8)],
+    )
     print(category1_1)
     product_2 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 2)
     print(f"Попытка добавления товара: {product_2}")
     category1_1.add_product(product_2)
     print(str(category1_1))
-    print(f"Товары в категории '{category1_1.name}':\n"
-          f"{category1_1.products}\n")
+    print(f"Товары в категории '{category1_1.name}':\n" f"{category1_1.products}\n")
 
     order_1 = Order("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 5)
     print(order_1)
@@ -368,7 +372,3 @@ if __name__ == "__main__":
     print("Список заказов:")
     print(order_sample.orders_str())
     print(f"Количество наименований товаров в списке заказов: {order_sample.order_count}.")
-
-
-
-
