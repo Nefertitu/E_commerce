@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "transaction-analysis-app"
+name = "E-commerce"
 version = "0.1.0"
 description = ""
 authors = ["Olga Kazorina <nefertituolga@gmail.com>"]
