@@ -190,3 +190,9 @@ def order1() -> Order:
     return Order(
         name="Samsung Galaxy S23 Ultra", description="256GB, Серый цвет, 200MP камера", price=180000.0, quantity=2
     )
+
+
+@pytest.fixture
+def order2() -> Order:
+    """Возвращает экземпляр класса Order"""
+    return Order(name="Iphone 15", description="512GB, Gray space", price=210000.0, quantity=5)

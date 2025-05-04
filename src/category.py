@@ -1,9 +1,8 @@
 from typing import List, Optional
 
 from src.base_products import BaseProducts
-from src.lawngrass import LawnGrass
+from src.exceptions import ZeroQuantityProduct
 from src.product import Product
-from src.smartphone import Smartphone
 
 
 class Category(BaseProducts):
@@ -11,7 +10,6 @@ class Category(BaseProducts):
 
     name: str
     description: str
-    # products: Optional[List[Product]] = None
 
     category_count = 0
     product_count = 0
@@ -24,10 +22,10 @@ class Category(BaseProducts):
         :param description:
         :param products:
         """
-        super().__init__()
         self.name = name
         self.description = description
         self.__products = products if products is not None else []
+        super().__init__()
 
         Category.category_count += 1
         Category.product_count = len(self.__products)
@@ -37,20 +35,28 @@ class Category(BaseProducts):
         amount_products = 0
         for product in self.__products:
             amount_products += product.quantity
-
         return f"{self.name}, количество продуктов: {amount_products} шт."
 
     def add_product(self, product: Product) -> None:
         """
         Метод для добавления товаров в категорию список товаров
         """
-        if issubclass(Smartphone, Product) or issubclass(LawnGrass, Product):
-            if self.__products:
-                self.__products.append(product)
-                if isinstance(self, Smartphone):
-                    Category.product_count += 1
-                elif isinstance(self, LawnGrass):
-                    Category.product_count += 1
+        try:
+            if isinstance(product, Product) is False:
+                raise TypeError()
+
+            if product.quantity <= 0:
+                raise ZeroQuantityProduct()
+        except ZeroQuantityProduct as e:
+            print(f"Ошибка при добавлении товара: {e}")
+        except TypeError:
+            print("Объект не является экземпляром класса `Product`.")
+        else:
+            self.__products.append(product)
+            Category.product_count += 1
+            print("Товар успешно добавлен.")
+        finally:
+            print("Обработка добавления товара завершена.\n")
 
     @property
     def products(self) -> str:  # type: ignore
@@ -73,6 +79,16 @@ class Category(BaseProducts):
         :return:
         """
         return self.__products
+
+    def middle_price(self) -> float:
+        """Возвращает средний ценник всех товаров"""
+        total_amount = []
+        try:
+            for product in self.__products:
+                total_amount.append(product.price)
+            return round(sum(total_amount) / len(self.__products), 2)
+        except ZeroDivisionError:
+            return 0
 
 
 # category = Category("Electronics", "Приборы",[Product("Смартфон", "Средство связи", 10.0, 15)])

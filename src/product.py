@@ -1,20 +1,12 @@
 from typing import Any, List, Optional
 
-from pydantic import Field
-
 from src.base_product import BaseProduct
+from src.exceptions import ZeroQuantityProduct
 from src.print_mixin import PrintMixin
 
 
 class Product(BaseProduct, PrintMixin):
     """Класс для представления продукта"""
-
-    name: str
-    description: str
-    # price: float
-    quantity: int = Field(
-        ..., ge=0, description="Целое число, большее или равное нулю"
-    )  # Количество должно быть больше или равно 0
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         """
@@ -29,11 +21,13 @@ class Product(BaseProduct, PrintMixin):
         self.description = description
         self.__price = price
         self.quantity = quantity
+        if self.quantity <= 0:
+            raise ZeroQuantityProduct("Товар с нулевым количеством не может быть добавлен.\n")
         super().__init__()
 
     def __str__(self) -> str:
         """возвращает строковое представление продукта"""
-        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт.\n"
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт. "
 
     def __add__(self, other: Any) -> Any:
         """Метод возвращает сумму произведений цены на количество у двух объектов

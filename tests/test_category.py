@@ -42,8 +42,8 @@ def test_products_property(category1: Category):
     """
 
     assert category1.products == (
-        "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 10 шт.\n"
-        "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 15 шт.\n"
+        "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: "
+        "10 шт. Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 15 шт. "
     )
 
 
@@ -59,4 +59,10 @@ def test_add_product(category1: Category) -> None:
 
 
 def test_category_str(category1: Category) -> None:
+    """
+    Проверяет корректность работы метода, возвращающего строковое отображение
+     для класса Category
+    :param category1:
+    :return:
+    """
     assert str(category1) == "Смартфоны, количество продуктов: 25 шт."
