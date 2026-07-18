@@ -25,7 +25,7 @@ class Smartphone(Product):
 
     def __add__(self, other: Any) -> Any:
         """Метод, возвращает сумму произведений цены на количество у двух
-        объектов, принадлежащих к классу 'Трава газонная' ('LawnGrass')"""
+        объектов, принадлежащих к классу 'Смартфоны' ('Smartphone')"""
         if type(self) is Smartphone:
             return self.price * self.quantity + other.price * other.quantity
         raise TypeError
